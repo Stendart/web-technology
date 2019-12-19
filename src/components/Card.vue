@@ -27,15 +27,10 @@
                     color="orange"
                     text
             >
-                Share
+                Открыть
             </v-btn>
 
-            <v-btn
-                    color="orange"
-                    text
-            >
-                Explore
-            </v-btn>
+
         </v-card-actions>
     </v-card>
 </template>

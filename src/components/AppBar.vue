@@ -7,7 +7,8 @@
                 hide-on-scroll
 
         >
-            <div class="d-flex align-center">
+            <v-btn class="d-flex align-center" text
+            @click="showMain()">
                 <v-img
                         alt="Vuetify Logo"
                         class="shrink mr-2"
@@ -18,7 +19,7 @@
                 />
 
                 <p class="font-weight-bold">BIRDerland</p>
-            </div>
+            </v-btn>
 
             <v-spacer></v-spacer>
 
@@ -37,10 +38,10 @@
 <script>
     export default {
         name: "AppBar",
-        props:['clickfn'],
+        props:['showCart', 'showMain'],
         methods: {
             showBasket() {
-                this.clickfn();
+                this.showCart();
             }
         }
     }

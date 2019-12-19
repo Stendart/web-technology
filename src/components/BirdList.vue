@@ -44,9 +44,10 @@
     import store from '../store'
     export default {
         name: "Banner",
+        props: ['typeGood'],
         data: () => ({
 
-            birds: store.getters.getBirdsList,
+            birds: [],
 
         }),
 
@@ -57,9 +58,21 @@
             },
 
             getGoodList(){
-                return store.getters.getGoodList
+                console.log(this.typeGood);
+                switch (this.typeGood){
+                    case 'bird' : return store.getters.getBirdsList;
+                    break;
+                    case 'toys' : return store.getters.getToysList;
+                        break;
+                    case 'feed' : return store.getters.getFeedList;
+                        break;
+                }
+                //return store.getters.getGoodList
             }
-        }
+        },
+        created: function(){
+            this.birds = this.getGoodList();
+        },
     }
 </script>
 

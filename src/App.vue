@@ -1,7 +1,7 @@
 <template>
   <v-app id="t">
 
-    <app-bar :clickfn="showCart"></app-bar>
+    <app-bar :showCart="showCart" :showMain="showMainPage"></app-bar>
 
     <v-content >
         <HelloWorld  v-if="showMain"/>
@@ -31,13 +31,36 @@
             </v-row>
         </v-container>
 
+        <!-- Птицы -->
         <v-container v-if="showBird">
             <v-navigation-drawer fixed app mini-variant>
                 <v-btn height="100%" min-width="5%" @click="showMainPage">
                     Назад
                 </v-btn>
             </v-navigation-drawer>
-            <bird-list></bird-list>
+
+            <bird-list typeGood="bird"></bird-list>
+        </v-container>
+
+        <!-- Игрушки -->
+        <v-container v-if="showToys">
+            <v-navigation-drawer fixed app mini-variant>
+                <v-btn height="100%" min-width="5%" @click="showMainPage">
+                    Назад
+                </v-btn>
+            </v-navigation-drawer>
+            <bird-list typeGood="toys"></bird-list>
+        </v-container>
+
+        <!-- Еда -->
+        <v-container v-if="showFeed">
+            <v-navigation-drawer fixed app mini-variant>
+                <v-btn height="100%" min-width="5%" @click="showMainPage">
+                    Назад
+                </v-btn>
+            </v-navigation-drawer>
+
+            <bird-list typeGood="feed"></bird-list>
         </v-container>
 
 
@@ -76,7 +99,9 @@ export default {
   data: () => ({
     showMain: true,
     showBird: false,
-    showCard: false
+    showCard: false,
+    showToys: false,
+    showFeed: false,
 
   }),
     methods: {
@@ -84,23 +109,38 @@ export default {
             this.showMain = true;
             this.showBird = false;
             this.showCard = false;
+            this.showToys = false;
+            this.showFeed = false;
         },
         showBirdList() {
             this.showMain = false;
             this.showCard = false;
+            this.showToys = false;
             this.showBird = true;
+            this.showFeed = false;
+        },
+
+        showFeedList() {
+            this.showFeed = true;
+            this.showToys = false;
+            this.showMain = false;
+            this.showCard = false;
+            this.showBird = false;
+        },
+        showToysList() {
+            this.showToys = true;
+            this.showMain = false;
+            this.showCard = false;
+            this.showBird = false;
+            this.showFeed = false;
         },
         showCart() {
             this.showMain = false;
             this.showCard = true;
             this.showBird = false;
+            this.showToys = false;
+            this.showFeed = false;
         },
-        showFeedList() {
-            console.log('show feed')
-        },
-        showToysList() {
-            console.log('show toy')
-        }
     }
 };
 </script>
