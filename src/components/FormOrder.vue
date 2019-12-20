@@ -96,7 +96,8 @@
                 console.log(this.homeNum);
                 console.log(this.fletNum);
 
-                store.commit('addOrder', infoUser);
+                //store.commit('addOrder', infoUser);
+                store.dispatch('addToDB', infoUser);
 
                 console.log(store.getters.getOrderList)
 

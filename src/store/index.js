@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import * as fb from 'firebase'
 
 Vue.use(Vuex)
 
@@ -105,6 +106,37 @@ export default new Vuex.Store({
     }
   },
   actions: {
+      async addToDB({commit}, order) {
+          try {
+              const orderInf = {
+                  name: order.name,
+                  phoneNum: order.phoneNum,
+                  postIndex: order.postIndex,
+                  str: order.str,
+                  homeNum: order.homeNum,
+                  fletNum: order.fletNum,
+
+                  goods: this.getters.getGoodList,
+              };
+              console.log(orderInf);
+              const resFB = await fb.database().ref('orderInfo').push(orderInf);
+                console.log(resFB);
+          } catch (error) {
+              throw error;
+          }
+      },
+
+      async fetchData({commit}) {
+          try{
+              const dbVal = await fb.database().ref('orderInfo').once('value');
+              const dbRes = dbVal.val();
+              console.log(dbRes);
+
+          }
+           catch (error) {
+              throw error;
+          }
+      }
   },
   modules: {
   }
